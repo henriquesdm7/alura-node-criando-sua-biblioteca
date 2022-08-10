@@ -1,24 +1,30 @@
 {
-  "name": "alura-node-criando-sua-biblioteca",
-  "version": "1.0.0",
-  "description": "",
-  "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/henriquesdm7/alura-node-criando-sua-biblioteca.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/henriquesdm7/alura-node-criando-sua-biblioteca/issues"
-  },
-  "homepage": "https://github.com/henriquesdm7/alura-node-criando-sua-biblioteca#readme",
-  "dependencies": {
-    "chalk": "^5.0.1"
-  }
+    "name": "alura-node-criando-sua-biblioteca",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest ./test",
+        "cli": "node cli.js ./arquivos/texto1.md"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/henriquesdm7/alura-node-criando-sua-biblioteca.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/henriquesdm7/alura-node-criando-sua-biblioteca/issues"
+    },
+    "homepage": "https://github.com/henriquesdm7/alura-node-criando-sua-biblioteca#readme",
+    "dependencies": {
+        "chalk": "^5.0.1",
+        "node-fetch": "^3.2.10"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.3",
+        "jest": "^28.1.3"
+    }
 }

@@ -1,32 +1,33 @@
-import chalk from 'chalk';
-import fs, { read } from 'fs';
+// import chalk from 'chalk';
+import fs from 'fs';
+
+function extractLinks(text) {
+    const regex = /\[([^\]]+)\]\((https:\/\/[^\)]+)\)/gm;
+    const arrayResults = [];
+
+    let temp;
+
+    while ((temp = regex.exec(text)) !== null) {
+        arrayResults.push({ [temp[1]]: temp[2] })
+    }
+
+    return arrayResults.length === 0 ? 'no links' : arrayResults;
+}
 
 function errorTreat(error) {
-    throw new Error(chalk.red(error.code, 'o arquivo não foi encontrado'));
+    throw new Error(error.code, 'the file was not found');
 }
 
-// ==> Synchronous format
-// function readFile(filepath) {
-//     const encoding = 'utf-8';
-//     fs.readFile(filepath, encoding, (error, text) => {
-//         if (error) {
-//             errorTreat(error);
-
-//         }
-
-//         console.log(chalk.green(text))
-//     });
-// }
-
-// ==> Asynchronous format
-function readFile(filepath) {
+// => With async/await
+async function readFile(filepath) {
     const encoding = 'utf-8';
-    fs.promises
-        .readFile(filepath, encoding)
-        .then((text) => {
-            console.log(chalk.blue(text));
-        })
-        .catch((error) => errorTreat(error));
+
+    try {
+        const text = await fs.promises.readFile(filepath, encoding);
+        return extractLinks(text);
+    } catch (error) {
+        errorTreat(error);
+    }
 }
 
-readFile('./arquivos/texto1.md');
+export default readFile;
